@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family:"Segoe UI",sans-serif;
+            margin: 0;
+        }
+        .docprompt{
+            display: flex;
+            flex-direction: row;
+            background-color: transparent;
+            width: 85%;
+            height: 80px;
+            position: fixed;
+            margin-top: 42%;
+            border-radius: 38pt;
+            align-items: center;
+            padding: 5px;
+        }
+        .uploaddoc{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            border-radius: 38pt;
+            position: fixed;
+            margin-left: 20px;
+        }
+        .docprompt .uploaddoc input:hover{
+            cursor: pointer;
+        }
+        input{
+            position: fixed;
+            margin-left: 200px;
+            height: 50px;
+            width: 700px;
+            border-radius: 38pt;
+            border-color: transparent;
+             box-shadow:0 5px 18px rgba(0,0,0,.08);
+             padding-left: 10px;
+        }
+    .docimage{
+        background-color: transparent;
+        position: fixed;
+        width: 170px;
+        height: 250px;
+        margin-right: 80%;
+        margin-top: 5%;
+        border-radius: 30pt;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .preview{
+        width: 140px;
+        height: 140px;
+        background-color: transparent;
+        border-radius: 30pt;
+        margin-top: 20px;
+        box-shadow:0 5px 18px rgba(0,0,0,.08);
+        font-size: 60px;
+        opacity: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .meta{
+        width: 140px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 30pt;
+        margin-top: 10px;
+        padding: 5px;
+        padding-left: 10px;
+         box-shadow:0 5px 18px rgba(0,0,0,.08);
+         display: flex;
+         flex-direction: column;
+         align-self: center;
+         justify-content: center;
+         font-size: small;
+    }
+    .send{
+        width: 75px;
+        height: 55px;
+        border-radius: 38pt;
+        background-color: black;
+        color: white;
+        position: fixed;
+        margin-left: 73%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow:0 5px 18px rgba(0,0,0,.08);
+    }
+.chat-container{
+    width:70%;
+    height:450px;
+    overflow-y:auto;
+    background-color: transparent;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-top: 25px;
+    scrollbar-width: 0;
+}
+
+#ragchatarea{
+    list-style:none;
+    padding:20px;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.user-msg{
+    align-self:flex-end;
+    background:white;
+    padding:15px;
+    border-radius:25px 25px 0 25px;
+    max-width:60%;
+    word-wrap:break-word;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.bot-msg{
+    align-self:flex-start;
+    background:#f5f5f5;
+    padding:15px;
+    border-radius:25px 25px 25px 0;
+    max-width:60%;
+    word-wrap:break-word;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+    </style>
+</head>
+<body>
+    <div>
+        <span style="font-size: 40px; margin-top: 10px;"><strong>Retrieval-Augmented Generation</strong></span>
+    </div>
+    <div class="docimage">
+        <div class="preview" id="prev"><span>.doc</span></div>
+        <div class="meta" id="meta"><span>📁 Upload Document</span></div>
+    </div>
+    <div class="docprompt">
+        <div class="uploaddoc" onclick="uploadragdoc()">
+            <input type="file" id="fileinput" accept=".doc, .pdf, .docx" style="display: none;">
+            <i class="fa-solid fa-add"></i>
+        <strong style="margin-left: 15px;">Upload Docs</strong>
+    </div>
+        <input type="text" placeholder="Enter query related to your doc.." id="docprmt">
+        <div class="send" onclick="sendprompt()"><strong>Send</strong></div>
+    </div>
+    <div class="chat-container">
+    <ul id="ragchatarea"></ul>
+</div>
+     <script src="{{ url_for('static', filename='home.js') }}"></script>
+</body>
+</html>

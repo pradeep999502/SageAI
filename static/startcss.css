@@ -1,0 +1,170 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    margin:0;
+    background:white;
+    position:relative;
+    
+}
+
+body::before{
+    content:"";
+    position:fixed;
+
+    top:50%;
+    left:50%;
+
+    width:220px;
+    height:220px;
+
+    background:url("/static/logo.png") no-repeat center;
+    background-size:contain;
+
+    transform:translate(-50%,-50%) scale(0.8);
+
+    opacity:0.05;    
+
+    pointer-events:none;
+    z-index:-1;
+
+    animation:logoFade 4s ease forwards;
+}
+
+@keyframes logoFade{
+
+    from{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(0.6);
+    }
+
+    to{
+        opacity:0.3;
+        transform:translate(-50%,-50%) scale(1);
+    }
+
+}
+
+header{
+    height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 60px;
+    border-bottom:1px solid #eee;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo img{
+    width:42px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#444;
+}
+
+.login{
+    padding:10px 24px;
+    border:none;
+    border-radius:25px;
+    background:black;
+    color:white;
+    cursor:pointer;
+}
+
+.hero{
+    height:75vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:58px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    width:700px;
+    max-width:90%;
+    color:#666;
+    font-size:20px;
+    line-height:1.6;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    gap:20px;
+}
+
+.primary,
+.secondary{
+    padding:15px 35px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.primary{
+    border:none;
+    background:black;
+    color:white;
+}
+
+.secondary{
+    background:white;
+    border:1px solid #ccc;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    padding:60px;
+}
+
+.card{
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card i{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    border-top:1px solid #eee;
+    color:#666;
+}
+

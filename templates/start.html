@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage AI Assistant</title>
+    <link rel="stylesheet" href="/static/startcss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="/static/logo.png" alt="Sage">
+        <span>Sage</span>
+    </div>
+
+    <nav>
+        <a href="#">Features</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+
+        <button class="login" onclick="window.location='/login'">
+            Login
+        </button>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <h1>Your Intelligent AI Assistant</h1>
+
+    <p>
+        Ask questions, analyze documents, summarize PDFs,
+        generate code, create content, and work faster with Sage.
+    </p>
+
+    <div class="buttons">
+        <button class="primary" onclick="window.location.href='/chattemplate' ">
+            Get Started
+        </button>
+
+        <button class="secondary">
+            Learn More
+        </button>
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="card">
+        <i class="fa-solid fa-comments"></i>
+        <h3>Smart Conversations</h3>
+        <p>Chat naturally with AI.</p>
+    </div>
+
+    <div class="card">
+        <i class="fa-solid fa-file-lines"></i>
+        <h3>Document Analysis</h3>
+        <p>Upload PDFs, Word and Excel files.</p>
+    </div>
+
+    <div class="card">
+        <i class="fa-solid fa-code"></i>
+        <h3>Programming</h3>
+        <p>Generate and debug code instantly.</p>
+    </div>
+
+    <div class="card">
+        <i class="fa-solid fa-image"></i>
+        <h3>Image Understanding</h3>
+        <p>Analyze and describe images.</p>
+    </div>
+
+</section>
+
+<footer>
+
+    © 2026 Sage AI Assistant • Powered by AI
+
+</footer>
+    <script src="/static/home.js"></script>
+
+</body>
+</html>

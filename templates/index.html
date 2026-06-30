@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage</title>
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='logo.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo{
+    width: 100%;
+    position: fixed;
+    top: 25px;
+    left: 35px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+}
+
+.logo img{
+    width: 40px;
+    height: 40px;
+}
+
+.logout{
+    width: 100px;
+    height: 50px;
+    margin-top: 100px;
+}
+.textarea{
+    width: 70%;
+    height: 100px;
+    border-radius: 38pt;
+    background-color:transparent;
+    position: fixed;
+    margin-top: 40%;
+    display: flex;
+    align-items: center;
+    /* margin-left: 250px; */
+    
+}
+.textarea input{
+    height: 60px;
+    width: 80%;
+    margin-left: 30px;
+    border-radius: 38pt;
+    border-color: transparent;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    padding: 10px;
+}
+
+
+.chat{
+    width: 65%;
+    height: 65%;
+    background-color: aquamarine;
+    position: absolute;
+    margin-bottom: 20px;
+    display: none;
+}
+.adddoc{
+    width:220px;
+    background:#fff;
+    position:absolute;
+    bottom:80px;
+    left:20px;
+
+    display: none;
+
+    padding:8px;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.15);
+
+    z-index:100;
+       
+}
+
+.doc{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.doc:hover{
+    background:#f5f5f5;
+}
+
+.doc i{
+    width:24px;
+    text-align:center;
+    font-size:20px;
+}
+
+.doc span{
+    font-size:15px;
+    font-weight:500;
+}
+
+/* Colors */
+
+.file{
+    color:#607D8B;
+}
+
+.image{
+    color:#43A047;
+}
+
+.pdf{
+    color:#E53935;
+}
+
+.word{
+    color:#1565C0;
+}
+
+.excel{
+    color:#2E7D32;
+}
+
+.ppt{
+    color:#F57C00;
+}
+
+.profile{
+    display: none;
+    flex-direction: column;
+    width: 250px;
+    height: fit-content;
+    background:white;
+    border-radius:38px 0px 38px 38px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    padding:15px;
+    font-size: 15px;
+    z-index: 100px;
+    position: absolute;
+    margin-top: 25%;
+    margin-left: 68%;
+}
+
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:10px;
+}
+
+.profile-icon{
+    font-size:42px;
+    color:#666;
+}
+
+.profile h4{
+    margin:0;
+}
+
+.profile p{
+    margin:3px 0;
+    color:#666;
+    font-size:14px;
+}
+
+.profile hr{
+    border:none;
+    border-top:1px solid #eee;
+    margin:10px 0;
+}
+
+.profile-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.profile-item:hover{
+    background:#f5f5f5;
+    border-radius: 38pt;
+}
+
+.profile-item i{
+    width:20px;
+}
+
+.logout{
+    color:#d32f2f;
+}
+#prompt{
+    width:100%;
+    height:50px;
+    padding:0 20px;
+    border:1px solid #ddd;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+    background:white;
+    transition:.3s;
+}
+
+#prompt:focus{
+    border-color:#999;
+    box-shadow:0 0 10px rgba(0,0,0,.08);
+}
+
+#prompt::placeholder{
+    color:#888;
+}
+.chat-container{
+    width:75%;
+    height:450px;
+    overflow-y:auto;
+    background-color: white;
+    margin-bottom: 50px;
+}
+
+#chatarea{
+    list-style:none;
+    padding:20px;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.user-msg{
+    align-self:flex-end;
+    background:white;
+    padding:15px;
+    border-radius:25px 25px 0 25px;
+    max-width:60%;
+    word-wrap:break-word;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.bot-msg{
+    align-self:flex-start;
+    background:#f5f5f5;
+    padding:15px;
+    border-radius:25px 25px 25px 0;
+    max-width:60%;
+    word-wrap:break-word;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+.rag{
+    display: flex;
+    position: fixed;
+    height: 50px;
+    width: 100px;
+    border-radius: 38pt;
+    background-color: #f5f5f5;
+    align-items: center;
+    justify-content: center;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    margin-left: 20%;
+    border-color: transparent;
+    font-size: 25px;
+    
+    
+}
+
+    </style>
+</head>
+<body>
+    <div class="logo">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Sage Logo">
+    <span>Sage</span>
+    <button class="rag" onclick="window.location.href='/rag'"><strong>RAG</strong></button>
+    <i class="fa-solid fa-user" style="margin-left: 85%; position: fixed;" onclick="showProfile()"></i>
+        <div class="profile" id="profile">
+             <div>
+            <h4 id="profileName">Pradeep</h4>
+            <p id="profileEmail">pradeep@email.com</p>
+        </div>
+   
+
+    <hr>
+
+    <div class="profile-item">
+        <i class="fa-solid fa-user"></i>
+        <span>My Profile</span>
+    </div>
+
+    <div class="profile-item">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </div>
+
+    <div class="profile-item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Chat History</span>
+    </div>
+
+    <div class="profile-item" style="color:#d32f2f;" onclick="window.location.href='/'">
+        <i class="fa-solid fa-right-from-bracket" ></i>
+        <span>Logout</span>
+    </div>
+        </div>
+    
+    </div>
+   
+<div class="textarea">
+    <div class="adddoc" id="docs">
+
+    <div class="doc">
+        <i class="fa-solid fa-file-lines file"></i>
+        <span>Document</span>
+    </div>
+
+    <div class="doc">
+        <i class="fa-solid fa-image image"></i>
+        <span>Image</span>
+    </div>
+
+    <div class="doc">
+        <i class="fa-solid fa-file-pdf pdf"></i>
+        <span>PDF</span>
+    </div>
+
+    <div class="doc">
+        <i class="fa-solid fa-file-word word"></i>
+        <span>Word</span>
+    </div>
+
+    <div class="doc">
+        <i class="fa-solid fa-file-excel excel"></i>
+        <span>Excel</span>
+    </div>
+    </div>
+
+    <i class="fa-solid fa-add" style="font-size: 25px; margin-left: 20px; border-radius: 38pt;"  onclick="AddDocument()"></i>
+    
+    <input
+    type="text"
+    id="prompt"
+    placeholder="Ask Sage anything..."
+    autocomplete="off">
+
+    <i class="fa-solid fa-paper-plane" style="font-size: 35px; margin-left: 20px; border-radius: 38pt;" onclick="sendtext()"></i>
+</div>
+<div class="chat-container">
+    <ul id="chatarea"></ul>
+</div>
+   
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
+    
+</body>
+</html>
