@@ -170,25 +170,23 @@ async function sendprompt(){
     console.log(data.reply);
 }
 
-function addragMessage(text, sender){
+function addragMessage(text, sender) {
 
     const chat = document.getElementById("ragchatarea");
-
     const li = document.createElement("li");
 
+    li.className = sender === "user" ? "user-msg" : "bot-msg";
 
+    if (sender === "user") {
+        li.textContent = text;
+    } else {
+        li.innerHTML = marked.parse(text);
 
-    if(sender === "user"){
-        li.className = "user-msg";
+        if (window.MathJax) {
+            MathJax.typesetPromise([li]);
+        }
     }
-    else{
-        li.className = "bot-msg";
-    }
-
-    li.innerHTML = text;
 
     chat.appendChild(li);
-
-    // Auto-scroll to the latest message
     chat.scrollTop = chat.scrollHeight;
 }
